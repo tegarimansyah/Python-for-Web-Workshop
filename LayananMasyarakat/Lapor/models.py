@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Custom_user(models.Model):
     nik     = models.CharField(max_length=20)
@@ -8,9 +9,11 @@ class Custom_user(models.Model):
 
 class Komentar(models.Model):
     isi         = models.CharField(max_length=500)
+    user = models.ManyToManyField(User)
     datetime    = models.DateTimeField()
 
 class Vote(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     pilihan = models.CharField(max_length=100)
 
 class District(models.Model):
@@ -29,6 +32,7 @@ class Laporan(models.Model):
     vote        = models.ManyToManyField(Vote)
     district    = models.ForeignKey(District, on_delete=models.CASCADE)
     kategori    = models.ForeignKey(Kategori, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     datetime    = models.DateTimeField()
 
 
