@@ -1,5 +1,11 @@
 from django.db import models
 
+class Custom_user(models.Model):
+    nik     = models.CharField(max_length=20)
+    daerah  = models.CharField(max_length=25)
+    telepon = models.CharField(max_length=15)
+    jabatan = models.CharField(max_length=20)
+
 class Komentar(models.Model):
     isi         = models.CharField(max_length=500)
     datetime    = models.DateTimeField()
@@ -25,8 +31,4 @@ class Laporan(models.Model):
     kategori    = models.ForeignKey(Kategori, on_delete=models.CASCADE)
     datetime    = models.DateTimeField()
 
-class Custom_user(models.Model):
-    nik     = models.CharField(max_length=20)
-    daerah  = models.CharField(max_length=25)
-    telepon = models.CharField(max_length=15)
-    jabatan = models.CharField(max_length=20)
+
